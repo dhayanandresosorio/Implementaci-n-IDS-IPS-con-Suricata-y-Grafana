@@ -18,6 +18,23 @@ Interfaces de red:
 - **Wireguard VPN** 
 - **Personal1**  - IP `192.168.40.2`
 
+Su netplan:
+```conf
+network:
+    ethernets:
+        enp1s0:
+            dhcp4: true
+        enp2s0:
+            dhcp4: true
+        enp3s0:
+            dhcp4: false
+            addresses: [192.168.40.2/24]
+            routes:
+              - to: 192.168.50.0/24
+                via: 192.168.40.1
+    version: 2
+````
+
 Recursos:
 
 - **RAM:** 5GB
@@ -36,6 +53,23 @@ Interfaces de red:
 - **Personal1** - IP `192.168.40.1` `enp3s0`
 - **Personal2** - IP `192.168.50.1` `enp4s0`
 
+Su netplan:
+```conf
+network:
+    ethernets:
+        enp1s0:
+            dhcp4: true
+        enp2s0:
+            dhcp4: true
+        enp3s0:
+            dhcp4: false
+            addresses: [192.168.40.1/24]
+        enp4s0:
+            dhcp4: false
+            addresses: [192.168.50.1/24]
+    version: 2
+````
+
 Recursos:
 
 - **RAM:** 6GB
@@ -52,6 +86,24 @@ Interfaces de red:
 - **Default**
 - **Wireguard VPN**
 - **Personal2** - IP `192.168.50.2`
+
+
+Su netplan:
+```conf
+network:
+    ethernets:
+        enp1s0:
+            dhcp4: true
+        enp2s0:
+            dhcp4: true
+        enp3s0:
+            dhcp4: false
+            addresses: [192.168.50.2/24]
+            routes:
+              - to: 192.168.40.0/24
+                via: 192.168.50.1
+    version: 2
+````
 
 Recursos:
 
@@ -952,12 +1004,4 @@ Así nos quedarían los dashboards una vez ajustados, haciéndolos mucho más gr
   <img src="./Imágenes/19.png">
 </figure>
 
-
----
-
-## 24. Cierre
-
 Con esto, damos por completada con éxito la implementación tanto del monitoreo de Suricata como de las distintas herramientas que hemos utilizado para poder verlo de forma más intuitiva.
-
-```
-```
